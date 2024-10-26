@@ -14,6 +14,12 @@ tplyr_table(tplyr_adsl, TRT01P, where = SAFFL == "Y") %>%
 
 # Counting subjects who's completed the study and by treatment
 count_list <- list()
-count_list <- adsl %>% group_by(TRT01A) %>% summarise(N=n())
+count_list <- adsl %>%
+              filter( SAFFL == "Y") %>%
+              group_by(TRT01A) %>%
+              summarise(N=n()) %>%
+              pivot_wider(names_from = TRT01A, values_from = N) %>%
+              mutate(newcol = "Number of Subjects in the Population")
+              # %>% select(newcol)
 
-small_n  <- count_list %>% pivot_wider(names_from = TRT01A, values_from = N)
+
