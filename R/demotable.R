@@ -22,4 +22,5 @@ count_list <- adsl %>%
               mutate(newcol = "Number of Subjects in the Population")
               # %>% select(newcol)
 
+# How to create a column count per
 
